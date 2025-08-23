@@ -811,7 +811,7 @@ static std::string convertFromBase64(const std::string &str)
 namespace
 {
    #ifdef _WIN32
-   std::wstring ToStdWString( std::string_view str )
+   std::wstring ToStdWString(const std::string &str)
    {
       std::wstring wstr;
       int          nchars = ::MultiByteToWideChar(CP_UTF8, 0, str.data(), (int)str.length(), 0, 0);
@@ -826,7 +826,7 @@ namespace
       return wstr;
    }
 
-   std::string ToStdString( std::wstring_view wstr )
+   std::string ToStdString(const std::wstring &wstr)
    {
        std::string str;
        int         nchars = ::WideCharToMultiByte( CP_UTF8, 0, wstr.data(), (int)wstr.length(), NULL, NULL, NULL, NULL );
