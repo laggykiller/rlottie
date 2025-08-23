@@ -847,7 +847,7 @@ namespace
        std::wstring wpath = ToStdWString( path );
        std::wstring wresolved_path;
        wresolved_path.resize( PATH_MAX );
-       if ( PathCanonicalizeW( wresolved_path.data(), wpath.c_str() ) )
+       if ( PathCanonicalizeW(const_cast<wchar_t*>(wresolved_path.data()), wpath.c_str() ) )
        {
            std::string path = ToStdString(wresolved_path);
            strcpy_s( resolved_path, path.length() * sizeof( char ), path.c_str() );
